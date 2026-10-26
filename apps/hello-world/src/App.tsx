@@ -19,7 +19,7 @@ function App(){
     </div>
 
     <div>
-      <AlbumCard AlbumTitle="The eminem show" Author="Eminem" Url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0s5YwnrFnQrCS5fSdTx__nMUXk-cXG60g2ExHxvGaqA&s=10" ><span>Without me </span><span>4:30</span><br /><span>with me </span><span>5:00</span></AlbumCard>
+      <AlbumCard AlbumTitle="The eminem show" Author="Eminem" Url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0s5YwnrFnQrCS5fSdTx__nMUXk-cXG60g2ExHxvGaqA&s=10" ><span>Without me </span><span>4:30</span><br /><span>with me </span><span>5:00</span><br/></AlbumCard>
       <AlbumCard AlbumTitle="Nevermind" Author="Nivana" Url="https://www.indieground.net/images/blog/2024/indieblog-best-album-covers-90s-11.jpg" ><span>Test1 </span><span>4:20</span><br /><span>Test2</span><span>3:00</span></AlbumCard>
     </div>
 
