@@ -1,23 +1,27 @@
-interface Props {
+export interface BookProps {
     /** Tytul Ksiazki */
     Title: string
 
     /** Autor */
-    Author:  string
+    ReleaseYear:  number
 
     /** Url */
     Url: string
 
+    /** Ilosc stron */
+    Pages: number
+
 }
 
-function BookCard({Title,Author,Url} : Props){
+function BookCard({Title,ReleaseYear,Url,Pages} : BookProps){
 
         return(
-            <>
+            <div>
             <img src={Url} alt={Title} width={250}/>
             <p>{Title}</p>
-            <p>{Author}</p>
-            </>
+            <p>{ReleaseYear}</p>
+            <p>{Pages}</p>
+            </div>
         )
     
 }
