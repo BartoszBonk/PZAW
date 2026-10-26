@@ -1,6 +1,7 @@
 import MovieCard, {type MovieProps} from "./components/MovieCard"
 import BookCard, {type BookProps} from "./components/BookCard"
 import AlbumCard, {type AlbumProps} from "./components/AlbumCard"
+import Section from "./components/Section"
 function App(){
 
   const movies : MovieProps[] = [
@@ -68,8 +69,7 @@ function App(){
 
   return(
     <>
-    <div>
-      <h2>Movies</h2>
+    <Section Title="Movies">
     {
       movies.map((movie) => {
         return(
@@ -77,10 +77,9 @@ function App(){
       )
     }) 
     }
-    </div>
+    </Section>
 
-    <div>
-      <h2>Movies post 2010</h2>
+    <Section Title="Movies post 2010">
     {
       moviesAfter2010.map((movie) => {
         return(
@@ -89,10 +88,9 @@ function App(){
     }) 
     }
     
-    </div>
+    </Section>
 
-    <div>
-      <h2>Books</h2>
+    <Section Title="Books">
     {
       books.map((book) => {
         return(
@@ -100,10 +98,9 @@ function App(){
       )
     }) 
     }
-    </div>
+    </Section>
 
-    <div>
-      <h2>Books by release date</h2>
+    <Section Title="Books by release date">
     {
       booksByYear.map((book) => {
         return(
@@ -111,10 +108,9 @@ function App(){
       )
     }) 
     }
-    </div>
+    </Section>
 
-    <div>
-      <h2>Albums</h2>
+    <Section Title="Albums">
     {
       albums.map((album) => {
         return(
@@ -122,13 +118,12 @@ function App(){
       )
     }) 
     }
-    </div>
+    </Section>
 
-    <div>
-      <h2>Longest Album</h2>
+    <Section Title="Longest Album">
 
       <AlbumCard AlbumTitle={longestAlbum.AlbumTitle} Author={longestAlbum.Author} Url={longestAlbum.Url} Genre={longestAlbum.Genre} ReleaseYear={longestAlbum.ReleaseYear} Songs={longestAlbum.Songs}/>
-    </div>
+    </Section>
 
     </>
   )
