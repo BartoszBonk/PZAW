@@ -30,14 +30,15 @@ function AlbumCard({AlbumTitle,Author,Url,Genre,ReleaseYear,Songs} : AlbumProps)
             <p>{Author}</p>
             <p>{Genre}</p>
             <p>{ReleaseYear}</p>
-            {
+            {Songs.length > 0 ? (
                 Songs.map((song: SongProps, index) => {
                     return (
-                        <Song key={song.Title} Title={song.Title} Duration={song.Duration} TrackNumber={index + 1} />     
-                        
+                        <Song key={song.Title} Title={song.Title} Duration={song.Duration} TrackNumber={index + 1} />
                     )
                 })
-            }
+            ) : (
+                <p>Brak utworów</p>
+            )}
             </div>
         )
     

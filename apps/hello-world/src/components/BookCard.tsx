@@ -18,6 +18,7 @@ function BookCard({Title,ReleaseYear,Url,Pages} : BookProps){
         return(
             <div>
             <img src={Url} alt={Title} width={250}/>
+            {ReleaseYear < 2000 && <span>Klasyka</span>}
             <p>{Title}</p>
             <p>{ReleaseYear}</p>
             <p>{Pages}</p>

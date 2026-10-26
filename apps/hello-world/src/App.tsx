@@ -49,6 +49,13 @@ function App(){
         {Title:"In Bloom", Duration: 254},
         {Title:"Come as You Are", Duration: 219},
       ]
+    },
+    { AlbumTitle: "Demo",
+      Author: "Nieznany ",
+      Url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW0t64KQXmUbJ0eB-eUrNsAlXEkwqNbu-W438btEEm5w&s=10",
+      Genre:"Pop",
+      ReleaseYear:2026,
+      Songs: []
     }
   ]
 
