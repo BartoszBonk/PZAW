@@ -68,7 +68,7 @@ function App(){
 
 
   return(
-    <>
+    <div className="container">
     <Section Title="Movies">
     {
       movies.map((movie) => {
@@ -125,7 +125,7 @@ function App(){
       <AlbumCard AlbumTitle={longestAlbum.AlbumTitle} Author={longestAlbum.Author} Url={longestAlbum.Url} Genre={longestAlbum.Genre} ReleaseYear={longestAlbum.ReleaseYear} Songs={longestAlbum.Songs}/>
     </Section>
 
-    </>
+    </div>
   )
 }
 

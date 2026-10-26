@@ -1,7 +1,6 @@
 {
   "name": "PZAW-monorepo",
   "private": true,
-  
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",

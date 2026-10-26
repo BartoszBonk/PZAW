@@ -15,8 +15,10 @@ export function Song({Title, Duration, TrackNumber} : SongProps){
     const seconds = String(Duration % 60).padStart(2,"0");
 
     return(
-        <div>
-            {TrackNumber}. {Title} {minutes}:{seconds}
-        </div>
+        <tr>
+            <td>{TrackNumber}.</td>
+            <td>{Title}</td>
+            <td className="text-end">{minutes}:{seconds}</td>
+        </tr>
     )
 }
