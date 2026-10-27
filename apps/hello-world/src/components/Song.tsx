@@ -8,6 +8,8 @@ export interface SongProps {
 
     /** Track number */
     TrackNumber?: number
+
+    
 }
 
 export function Song({Title, Duration, TrackNumber} : SongProps){

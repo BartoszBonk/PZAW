@@ -16,7 +16,7 @@ export interface MovieProps {
 function MovieCard({Title,PremiereDate,Url,Rating} : MovieProps){
 
         return(
-            <div className="col">
+            <div className="col" onClick={()=>{console.log(`Nazwa filmu: ${Title}`)}}>
                 <div className="card h-100">
                 <img src={Url} alt={Title} className="card-img-top" />
                 <div className="card-body">
@@ -25,6 +25,12 @@ function MovieCard({Title,PremiereDate,Url,Rating} : MovieProps){
                     <p className="card-text">
                     {PremiereDate} , rating: {Rating}/10
                     </p>
+                    <button onClick={e => {
+                    e.stopPropagation();
+                    console.log(`Details for: ${Title}`)
+                    }} className="btn btn-outline-secondary">
+                        Details
+                    </button>
                 </div>
                 </div>
             </div>

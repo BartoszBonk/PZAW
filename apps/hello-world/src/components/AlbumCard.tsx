@@ -21,8 +21,17 @@ export interface AlbumProps {
 }
 
 
+
 function AlbumCard({AlbumTitle,Author,Url,Genre,ReleaseYear,Songs} : AlbumProps){
 
+    function handleSongClick(Title : any){
+        
+        
+            console.log(`Wybrano utwór: ${Title} z ${AlbumTitle}`)
+        
+
+    }
+    
         return(
             <div className="col">
             <div className="card h-100">
@@ -36,7 +45,9 @@ function AlbumCard({AlbumTitle,Author,Url,Genre,ReleaseYear,Songs} : AlbumProps)
                         <table className="table table-striped table-hover">
                             <tbody>
                                 {Songs.map((song: SongProps, index) => (
+                                    <span onClick={()=>handleSongClick(song.Title)}>
                                     <Song key={song.Title} Title={song.Title} Duration={song.Duration} TrackNumber={index + 1} />
+                                    </span>
                                 ))}
                             </tbody>
                         </table>

@@ -2,6 +2,7 @@ import MovieCard, {type MovieProps} from "./components/MovieCard"
 import BookCard, {type BookProps} from "./components/BookCard"
 import AlbumCard, {type AlbumProps} from "./components/AlbumCard"
 import Section from "./components/Section"
+import { useState } from "react"
 function App(){
 
   const movies : MovieProps[] = [
@@ -63,6 +64,10 @@ function App(){
   albums.sort((a,b) => a.AlbumTitle.localeCompare(b.AlbumTitle))
   const longestAlbum = [...albums].sort((a, b) => b.Songs.length - a.Songs.length)[0]
 
+  const [searchMovie, setSearchMovie] = useState("")
+  const [searchBook, setSearchBook] = useState("")
+  const [searchAlbum, setSearchAlbum] = useState("")
+  const [isFound, setFound] = useState(false)
 
 
 
@@ -70,13 +75,39 @@ function App(){
   return(
     <div className="container">
     <Section Title="Movies">
-    {
+      <div className="w-100 d-flex flex-column align-items-center gap-4">
+      <input
+            type="text"
+            className="form-control"
+            placeholder="Search title"
+            id ="movies-search"
+            onChange={(e)=> {
+              setSearchMovie(e.target.value)
+              setFound(movies.some((movie) => movie.Title.toLowerCase().includes(e.target.value.toLowerCase()))) //nie mam pojecia jak to dziala, rozwiaazanie z internetu
+            }}
+            />
+            {
+              searchMovie!="" && isFound ? (<p>Wyszukiwanie : {searchMovie}</p>) : searchMovie!=="" && !isFound && (<p>nieznaleziono filmow</p>)
+            } 
+      </div>
+
+    { searchMovie =="" &&
       movies.map((movie) => {
         return(
         <MovieCard key={movie.Title} Title={movie.Title} PremiereDate={movie.PremiereDate} Url={movie.Url} Rating={movie.Rating}/>
       )
     }) 
     }
+    { searchMovie !="" &&
+
+      movies.map((movie) => {
+        if(movie.Title.toLowerCase().includes(searchMovie.toLowerCase())){
+        return(
+        <MovieCard key={movie.Title} Title={movie.Title} PremiereDate={movie.PremiereDate} Url={movie.Url} Rating={movie.Rating}/>
+      )
+    }
+    }) 
+    } 
     </Section>
 
     <Section Title="Movies post 2010">
@@ -90,13 +121,35 @@ function App(){
     
     </Section>
 
-    <Section Title="Books">
-    {
+    <Section Title="Books" >
+      <div className="w-100 d-flex flex-column align-items-center gap-4">
+      <input
+            type="text"
+            className="form-control"
+            placeholder="Search title"
+            id ="book-search"
+            onChange={(e)=> {setSearchBook(e.target.value)}}
+            />
+            {
+              searchBook!="" && (<p>Wyszukiwanie : {searchBook}</p>)
+            }
+      </div>
+    { searchBook =="" &&
       books.map((book) => {
         return(
         <BookCard key={book.Title} Title={book.Title} ReleaseYear={book.ReleaseYear} Pages={book.Pages} Url={book.Url}/>
       )
-    }) 
+    })
+    }
+    { searchBook !="" &&
+
+      books.map((book) => {
+        if(book.Title.toLowerCase().includes(searchBook.toLowerCase())){
+        return(
+        <BookCard key={book.Title} Title={book.Title} ReleaseYear={book.ReleaseYear} Pages={book.Pages} Url={book.Url}/>
+      )
+    }
+    })
     }
     </Section>
 
@@ -111,12 +164,34 @@ function App(){
     </Section>
 
     <Section Title="Albums">
-    {
+      <div className="w-100 d-flex flex-column align-items-center gap-4">
+      <input
+            type="text"
+            className="form-control"
+            placeholder="Search title"
+            id ="album-search"
+            onChange={(e)=> {setSearchAlbum(e.target.value)}}
+            />
+            {
+              searchAlbum!="" && (<p>Wyszukiwanie : {searchAlbum}</p>)
+            }
+      </div>
+    { searchAlbum =="" &&
       albums.map((album) => {
         return(
           <AlbumCard key={album.AlbumTitle} AlbumTitle={album.AlbumTitle} Author={album.Author} Url={album.Url} Genre={album.Genre} ReleaseYear={album.ReleaseYear} Songs={album.Songs}/>
       )
-    }) 
+    })
+    }
+    { searchAlbum !="" &&
+
+      albums.map((album) => {
+        if(album.AlbumTitle.toLowerCase().includes(searchAlbum.toLowerCase())){
+        return(
+          <AlbumCard key={album.AlbumTitle} AlbumTitle={album.AlbumTitle} Author={album.Author} Url={album.Url} Genre={album.Genre} ReleaseYear={album.ReleaseYear} Songs={album.Songs}/>
+      )
+    }
+    })
     }
     </Section>
 
