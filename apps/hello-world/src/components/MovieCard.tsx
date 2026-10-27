@@ -16,7 +16,7 @@ export interface MovieProps {
 function MovieCard({Title,PremiereDate,Url,Rating} : MovieProps){
 
         return(
-            <div className="col" onClick={()=>{console.log(`Nazwa filmu: ${Title}`)}}>
+            <div className="col" onClick={()=>{console.log(`Selected movie: ${Title}`)}}>
                 <div className="card h-100">
                 <img src={Url} alt={Title} className="card-img-top" />
                 <div className="card-body">

@@ -82,6 +82,7 @@ function App(){
             placeholder="Search title"
             id ="movies-search"
             onChange={(e)=> {
+              console.log(`Movie search: ${e.target.value}`)
               setSearchMovie(e.target.value)
               setFound(movies.some((movie) => movie.Title.toLowerCase().includes(e.target.value.toLowerCase()))) //nie mam pojecia jak to dziala, rozwiaazanie z internetu
             }}
@@ -128,7 +129,10 @@ function App(){
             className="form-control"
             placeholder="Search title"
             id ="book-search"
-            onChange={(e)=> {setSearchBook(e.target.value)}}
+            onChange={(e)=> {
+              console.log(`Book search: ${e.target.value}`)
+              setSearchBook(e.target.value)
+            }}
             />
             {
               searchBook!="" && (<p>Wyszukiwanie : {searchBook}</p>)
@@ -170,7 +174,10 @@ function App(){
             className="form-control"
             placeholder="Search title"
             id ="album-search"
-            onChange={(e)=> {setSearchAlbum(e.target.value)}}
+            onChange={(e)=> {
+              console.log(`Album search: ${e.target.value}`)
+              setSearchAlbum(e.target.value)
+            }}
             />
             {
               searchAlbum!="" && (<p>Wyszukiwanie : {searchAlbum}</p>)
