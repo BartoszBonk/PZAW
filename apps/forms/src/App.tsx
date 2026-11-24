@@ -20,6 +20,7 @@ const [card, setCard] = useState<z.infer<typeof Player> | null>(null);
 const [copy, setCopy] = useState<z.infer<typeof Player> | null>(null);
 const [words,setWords] = useState(0);
 const [enabled,setEnabled] = useState(true);
+const [levelError, setLevelError] = useState<string | null>(null)
 
 
 
@@ -68,24 +69,40 @@ const [enabled,setEnabled] = useState(true);
        <div className='flex w-full max-w-sm flex-col gap-3 rounded-xl border border-zinc-200 p-6 text-left shadow-sm dark:border-zinc-800'>
         <div className='mb-2 flex items-center justify-between'>
           <h2 className='m-0 text-xl font-semibold'>Player card</h2>
-          <span className='rounded-full bg-violet-600/10 px-2.5 py-0.5 text-xs font-medium text-violet-600 dark:text-violet-400'>
-            {card?.public ? 'Public' : 'Private'}
+          <span
+            className={`rounded-full bg-violet-600/10 px-2.5 py-0.5 text-xs font-medium text-violet-600 dark:text-violet-400 ${!enabled ? 'cursor-pointer select-none hover:bg-violet-600/20' : ''}`}
+            onClick={() => { if (!enabled) setCopy(c => c && { ...c, public: !c.public }) }}
+          >
+            {(enabled ? card : copy)?.public ? 'Public' : 'Private'}
           </span>
         </div>
 
         <input type='text' disabled = {enabled} className={field} value={copy?.username ?? ''} onChange={e => setCopy(c => c && { ...c, username: e.target.value })}></input>
 
         <div className='flex gap-3'>
-          <input type='text' disabled = {enabled} className={field} value={copy?.race ?? ''} onChange={e => setCopy(c => c && { ...c, race: e.target.value as typeof c.race})}></input>
-          <input type='text' disabled = {enabled} className={field} value={copy?.class ?? ''} onChange={e => setCopy(c => c && { ...c, class: e.target.value as typeof c.class})}></input>
+          <select disabled = {enabled} className={field} value={copy?.race} onChange={e => setCopy(c => c && {...c, race: e.target.value as typeof c.race})}>
+            {Player.shape.race.options.map((r) => <option key={r}>{r}</option>)}
+          </select>
+
+          <select disabled = {enabled} className={field} value={copy?.class} onChange={e => setCopy(c => c && {...c, class: e.target.value as typeof c.class})}>
+            {Player.shape.class.options.map((c) => <option key={c}>{c}</option>)}
+          </select>
         </div>
 
-        <input type='number' disabled={enabled} className={field} value={copy?.level ?? ''} onChange={e => setCopy(c => c && { ...c, level: Number(e.target.value) })} />
+        <input type='number' disabled={enabled} className={field} value={copy?.level ?? ''} onChange={e => {
+            const result = Player.shape.level.safeParse(e.target.value);
+            setLevelError(result.success ? null : result.error.issues[0].message);
+            setCopy(c => c && { ...c, level: result.success ? result.data : Number(e.target.value) })}}/>
+
+        {levelError && <p className='-mt-2 text-sm text-red-500'>{levelError}</p>}
 
         <textarea disabled = {enabled} className={`${field} min-h-18 whitespace-pre-wrap`} value={copy?.description ?? ''} onChange={e => setCopy(c => c && { ...c, description: e.target.value })}></textarea>
+        {enabled &&
         <div onClick={() => setEnabled(!enabled)}>edit</div>
-        {!enabled &&
-        <div onClick={() => { setCard(copy); setEnabled(!enabled) }}>Save</div>
+        }
+
+        {!enabled && !levelError &&
+        <div onClick={() => {setCard(copy); setEnabled(!enabled);}}>Save</div>
         }
 
         
